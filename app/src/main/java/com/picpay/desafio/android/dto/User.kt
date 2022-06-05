@@ -1,4 +1,4 @@
-package com.picpay.desafio.dto
+package com.picpay.desafio.android.dto
 
 import android.os.Parcel
 import android.os.Parcelable
