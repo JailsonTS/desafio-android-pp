@@ -11,13 +11,15 @@ import com.picpay.desafio.android.R
 import com.picpay.desafio.android.adapters.UserListAdapter
 import com.picpay.desafio.android.api.FactoryService
 import com.picpay.desafio.android.api.PicPayService
-import com.picpay.desafio.android.databinding.FragmentContatosListaBinding
 import com.picpay.desafio.android.data.User
+import com.picpay.desafio.android.databinding.FragmentContatosListaBinding
+import com.picpay.desafio.android.di.MyApplicationJava
 import com.picpay.desafio.android.util.ListenerCallback
 import com.picpay.desafio.android.util.ViewUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class ContatosListaFragment : Fragment(), ListenerCallback {
     private lateinit var binding: FragmentContatosListaBinding
@@ -26,7 +28,7 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
     private lateinit var listener: ListenerCallback
 
     //@Inject
-    var serviceProvider: PicPayService? = null
+    //var serviceProvider: PicPayService? = null
 
     private val service: PicPayService by lazy {
         FactoryService(requireContext()).getPicPayService()
@@ -39,7 +41,7 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
         binding = FragmentContatosListaBinding.inflate(layoutInflater, container, false)
         listener = this
 
-        // (requireContext().applicationContext as MyApplication).netComponent?.inject(this)
+        //(requireContext().applicationContext as MyApplicationJava).netComponent.inject(this)
 
 
         return binding.root
@@ -59,36 +61,36 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             userListProgressBar.visibility = View.VISIBLE
 
-            if (serviceProvider != null) {
-                callGetListDagger()
-            } else {
-                callGetListaAPI()
-            }
+            //if (serviceProvider != null) {
+                //callGetListDagger()
+           // } else {
+               callGetListaAPI()
+            //}
 
         }
     }
 
     private fun callGetListDagger() {
-        serviceProvider!!.getUsers()
-            .enqueue(object : Callback<List<User>> {
-                override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    val message = getString(R.string.error)
-
-                    binding.userListProgressBar.visibility = View.GONE
-                    binding.recyclerView.visibility = View.GONE
-
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                    binding.userListProgressBar.visibility = View.GONE
-
-                    response.body()?.let {
-                        adapter.lista = it
-                    }
-                }
-            })
+//        serviceProvider!!.getUsers()
+//            .enqueue(object : Callback<List<User>> {
+//                override fun onFailure(call: Call<List<User>>, t: Throwable) {
+//                    val message = getString(R.string.error)
+//
+//                    binding.userListProgressBar.visibility = View.GONE
+//                    binding.recyclerView.visibility = View.GONE
+//
+//                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//
+//                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+//                    binding.userListProgressBar.visibility = View.GONE
+//
+//                    response.body()?.let {
+//                        adapter.lista = it
+//                    }
+//                }
+//            })
     }
 
     private fun callGetListaAPI() {

@@ -17,7 +17,7 @@ public class MyApplicationJava extends Application {
         super.onCreate();
 
         mApiComponent = (ApplicationComponent) DaggerApplicationComponentJava.builder()
-                .appModuleJava(new ApplicationModuleJava(this))
+                .applicationModuleJava(new ApplicationModuleJava(this))
                 .apiModuleJava(new ApiModuleJava(Constants.PICPAY_CONTATOS, this))
                 .build();
     }
