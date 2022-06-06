@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.api
+package com.picpay.desafio.android.services
 
 import android.content.Context
 import com.picpay.desafio.android.enums.Enums
