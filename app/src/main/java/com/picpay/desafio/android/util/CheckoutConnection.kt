@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 object CheckoutConnection {
-    @Suppress("DEPRECATION")
     fun isConnected(context: Context):Boolean{
 
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
@@ -25,7 +24,8 @@ object CheckoutConnection {
         }
         else {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val netInfo = cm.activeNetworkInfo
+            @Suppress("DEPRECATION") val netInfo = cm.activeNetworkInfo
+            @Suppress("DEPRECATION")
             return netInfo != null && netInfo.isConnectedOrConnecting && netInfo.isAvailable
         }
     }

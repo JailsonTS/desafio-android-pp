@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.api
 
 import android.content.Context
-import com.picpay.desafio.android.enums.Enums
+import com.picpay.desafio.android.util.Constants
 import com.picpay.desafio.android.util.CheckoutConnection
 import okhttp3.Cache
 import okhttp3.CacheControl
@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class BuildService(context: Context) {
-    private val url: String = Enums.PICPAY_CONTATOS.getString
+    //private val url: String = Enums.PICPAY_CONTATOS.getString
 
     private val CACHE_CONTROL = CacheControl.Builder().maxStale(1, TimeUnit.HOURS).build()
     private val CACHE_SIZE = 10 * 1024 * 1024
@@ -33,12 +33,12 @@ class BuildService(context: Context) {
                 var request = chain.request()
 
                 request = if (CheckoutConnection.isConnected(context)) {
-                    request.newBuilder().header(Enums.HEADER_CACHE_CONTROL.getString, "public, max-age=" + 5)
+                    request.newBuilder().header(Constants.HEADER_CACHE_CONTROL, "public, max-age=" + 5)
                         .build()
                 } else {
                     request.newBuilder()
-                        .removeHeader(Enums.HEADER_PRAGMA.getString)
-                        .removeHeader(Enums.HEADER_CACHE_CONTROL.getString)
+                        .removeHeader(Constants.HEADER_PRAGMA)
+                        .removeHeader(Constants.HEADER_CACHE_CONTROL)
                         .cacheControl(CACHE_CONTROL)
                         .build()
                 }
@@ -48,16 +48,16 @@ class BuildService(context: Context) {
             .build()
     }
 
-    private val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(url)
+    private fun createRetrofit(baseUrl: String): Retrofit {
+        return   Retrofit.Builder()
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     fun getPicPayService(): PicPayService {
-        return retrofit.create(PicPayService::class.java)
+        return createRetrofit(Constants.PICPAY_CONTATOS).create(PicPayService::class.java)
     }
 
 

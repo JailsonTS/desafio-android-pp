@@ -1,10 +1,10 @@
-package com.picpay.desafio.android.adapters.contatos.viewHolder
+package com.picpay.desafio.android.adapters.viewHolder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.databinding.ListItemUserBinding
-import com.picpay.desafio.android.dto.User
+import com.picpay.desafio.android.data.User
 import com.picpay.desafio.android.util.ListenerCallback
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso

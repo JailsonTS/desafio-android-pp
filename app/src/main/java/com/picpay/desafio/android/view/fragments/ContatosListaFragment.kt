@@ -8,18 +8,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.R
-import com.picpay.desafio.android.adapters.contatos.UserListAdapter
+import com.picpay.desafio.android.adapters.UserListAdapter
 import com.picpay.desafio.android.api.BuildService
 import com.picpay.desafio.android.api.PicPayService
 import com.picpay.desafio.android.databinding.FragmentContatosListaBinding
-import com.picpay.desafio.android.di.MyApplication
-import com.picpay.desafio.android.dto.User
+import com.picpay.desafio.android.data.User
 import com.picpay.desafio.android.util.ListenerCallback
 import com.picpay.desafio.android.util.ViewUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import javax.inject.Inject
 
 class ContatosListaFragment : Fragment(), ListenerCallback {
     private lateinit var binding: FragmentContatosListaBinding

@@ -1,18 +1,17 @@
-package com.picpay.desafio.android.adapters.contatos
+package com.picpay.desafio.android.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.picpay.desafio.android.adapters.contatos.viewHolder.UserListViewHolder
+import com.picpay.desafio.android.adapters.viewHolder.UserListViewHolder
 import com.picpay.desafio.android.databinding.ListItemUserBinding
-import com.picpay.desafio.android.dto.User
+import com.picpay.desafio.android.data.User
 import com.picpay.desafio.android.util.ListenerCallback
 
 
 class UserListAdapter(private val listener: ListenerCallback) :
     RecyclerView.Adapter<UserListViewHolder>() {
-
 
       var lista = emptyList<User>()
         set(value) {

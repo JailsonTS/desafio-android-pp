@@ -3,23 +3,19 @@ package com.picpay.desafio.android.util
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
-import android.graphics.Typeface
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.StyleSpan
+import android.content.res.Configuration
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
+import com.picpay.desafio.android.R
 
 object ViewUtils {
     private var mToast: Toast? = null
 
     fun toast(context: Context?, text: String?, length: Int) {
         mToast?.cancel()
-
         mToast = Toast.makeText(context, text, length)
         mToast?.show()
     }
@@ -31,8 +27,7 @@ object ViewUtils {
     fun dialog(context: Context, mensagem: String?): AlertDialog.Builder? {
         return AlertDialog.Builder(context)
             .setMessage(mensagem)
-            .setCancelable(false)
-
+            //.setCancelable(false)
     }
 
     fun dialogInformativo(context: Context, mensagem: String?) {
@@ -59,10 +54,9 @@ object ViewUtils {
 
     }
 
-
-     fun pageUp(fab: FloatingActionButton, nestedScroll: NestedScrollView) {
+    fun pageUp(fab: FloatingActionButton, nestedScroll: NestedScrollView) {
         nestedScroll.setOnScrollChangeListener { v: NestedScrollView, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
-            if(scrollY >60){
+            if (scrollY > 60) {
                 if (v.getChildAt(v.childCount - 1) != null) {
                     if (scrollY <= v.getChildAt(v.childCount - 1).measuredHeight - v.measuredHeight && scrollY < oldScrollY
                     ) {
@@ -71,7 +65,7 @@ object ViewUtils {
                         fab.show()
                     }
                 }
-            }else{
+            } else {
                 fab.hide()
             }
 
@@ -79,6 +73,17 @@ object ViewUtils {
 
         fab.setOnClickListener {
             nestedScroll.scrollTo(0, 0)
+        }
+    }
+
+     fun setTema(activity: Activity, config: Configuration) {
+        when (config.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                activity.setTheme(R.style.AppTheme)
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                activity.setTheme(R.style.AppTheme_Dark)
+            }
         }
     }
 
@@ -99,17 +104,5 @@ object ViewUtils {
             keyboard.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
-
-    fun setBold(frase: String, posicaoInicial: Int, posicaoFinal: Int): SpannableString {
-        val str = SpannableString(frase)
-        str.setSpan(
-            StyleSpan(Typeface.BOLD),
-            posicaoInicial,
-            posicaoFinal,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        return str
-    }
-
 
 }
