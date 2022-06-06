@@ -27,7 +27,7 @@ object ViewUtils {
     fun dialog(context: Context, mensagem: String?): AlertDialog.Builder? {
         return AlertDialog.Builder(context)
             .setMessage(mensagem)
-            //.setCancelable(false)
+        //.setCancelable(false)
     }
 
     fun dialogInformativo(context: Context, mensagem: String?) {
@@ -76,7 +76,7 @@ object ViewUtils {
         }
     }
 
-     fun setTema(activity: Activity, config: Configuration) {
+    fun setTema(activity: Activity, config: Configuration) {
         when (config.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 activity.setTheme(R.style.AppTheme)

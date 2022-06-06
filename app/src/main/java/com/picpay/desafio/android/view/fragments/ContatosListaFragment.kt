@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.adapters.UserListAdapter
-import com.picpay.desafio.android.api.BuildService
+import com.picpay.desafio.android.api.FactoryService
 import com.picpay.desafio.android.api.PicPayService
 import com.picpay.desafio.android.databinding.FragmentContatosListaBinding
 import com.picpay.desafio.android.data.User
@@ -29,7 +29,7 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
     var serviceProvider: PicPayService? = null
 
     private val service: PicPayService by lazy {
-        BuildService(requireContext()).getPicPayService()
+        FactoryService(requireContext()).getPicPayService()
     }
 
     override fun onCreateView(
@@ -39,8 +39,7 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
         binding = FragmentContatosListaBinding.inflate(layoutInflater, container, false)
         listener = this
 
-       // (requireContext().applicationContext as MyApplication).netComponent?.inject(this)
-
+        // (requireContext().applicationContext as MyApplication).netComponent?.inject(this)
 
 
         return binding.root
@@ -60,9 +59,9 @@ class ContatosListaFragment : Fragment(), ListenerCallback {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             userListProgressBar.visibility = View.VISIBLE
 
-            if(serviceProvider != null){
+            if (serviceProvider != null) {
                 callGetListDagger()
-            }else{
+            } else {
                 callGetListaAPI()
             }
 

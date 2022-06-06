@@ -1,27 +1,15 @@
-package com.picpay.desafio.android.di;
+package com.picpay.desafio.android.di
 
-import android.app.Application;
+import android.app.Application
 
-import com.picpay.desafio.android.di.component.PicPayComponent;
+class MyApplication : Application() {
 
-public class MyApplication extends Application {
+    override fun onCreate() {
+        super.onCreate()
 
-    private PicPayComponent mApiComponent;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-
-
-//
-//        mApiComponent = DaggerPicPayComponent.builder()
+//        val mApiComponent = DaggerApplicationComponentJava.builder()
 //                .appModule(new AppModule(this))
-//                .apiModule(new ApiModule(Enums.PICPAY_CONTATOS.getGetString()))
+//                .apiModule(new ApiModule(Constants.PICPAY_CONTATOS))
 //                .build();
-    }
-
-    public PicPayComponent getNetComponent() {
-        return mApiComponent;
     }
 }

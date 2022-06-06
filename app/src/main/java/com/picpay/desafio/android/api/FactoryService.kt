@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class BuildService(context: Context) {
+class FactoryService(context: Context) {
     //private val url: String = Enums.PICPAY_CONTATOS.getString
 
     private val CACHE_CONTROL = CacheControl.Builder().maxStale(1, TimeUnit.HOURS).build()

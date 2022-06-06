@@ -1,19 +1,19 @@
 package com.picpay.desafio.android.di.module
 
 import android.app.Application
-import com.google.gson.FieldNamingPolicy
+import dagger.Provides
+import javax.inject.Singleton
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.FieldNamingPolicy
 import dagger.Module
-import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
-class ApiModule(var mBaseUrl: String) {
+internal class ApiModule(var mBaseUrl: String) {
     @Provides
     @Singleton
     fun provideHttpCache(application: Application): Cache {
@@ -39,9 +39,9 @@ class ApiModule(var mBaseUrl: String) {
 
     @Provides
     @Singleton
-    fun provideRetrofit(gson: Gson?, okHttpClient: OkHttpClient?): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(mBaseUrl)
             .client(okHttpClient)
             .build()
