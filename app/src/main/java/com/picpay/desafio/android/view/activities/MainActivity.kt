@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.picpay.desafio.android.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setTema()
         setContentView(R.layout.activity_main)
-
     }
 
     private fun setTema() {

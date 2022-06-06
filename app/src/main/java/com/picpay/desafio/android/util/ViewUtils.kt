@@ -61,7 +61,7 @@ object ViewUtils {
 
 
      fun pageUp(fab: FloatingActionButton, nestedScroll: NestedScrollView) {
-        nestedScroll.setOnScrollChangeListener { v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+        nestedScroll.setOnScrollChangeListener { v: NestedScrollView, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
             if(scrollY >60){
                 if (v.getChildAt(v.childCount - 1) != null) {
                     if (scrollY <= v.getChildAt(v.childCount - 1).measuredHeight - v.measuredHeight && scrollY < oldScrollY
